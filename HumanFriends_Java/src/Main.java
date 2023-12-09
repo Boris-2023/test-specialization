@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        String animalsListFileName = "src/animals.csv";
+        String animalsListFileName = "animals.csv";
 
         ArrayList<Dog> dogs = new ArrayList<>();
         ArrayList<Cat> cats = new ArrayList<>();
