@@ -5,6 +5,11 @@ import View.*;
 
 import java.util.ArrayList;
 
+/**
+ * @param <T> type of animal, which can be included into Register
+ * @apiNote class Controller to maintain the Register of animals
+ * @see Controller#Controller
+ */
 public class Controller<T extends Animal> {
     private Model model;
     private ViewRus viewRus;
@@ -15,6 +20,10 @@ public class Controller<T extends Animal> {
 
     }
 
+    /**
+     * @apiNote basic method to operate main menu and folded sub-menus
+     * @see Controller#run()
+     */
     public void run() {
 
         int chosenType = 0;
@@ -171,6 +180,12 @@ public class Controller<T extends Animal> {
 
     }
 
+    /**
+     * @param animals    list of animals for type, which target animal belongs to
+     * @param chosenType number of type in the types sub-menu
+     * @apiNote routine for commands modification for particular animal
+     * @see Controller#modifyCommands(ArrayList, int)
+     */
     private void modifyCommands(ArrayList<T> animals, int chosenType) {
 
         if (animals.size() == 0) {
@@ -201,6 +216,12 @@ public class Controller<T extends Animal> {
                 viewRus.msgOnEmptyListForType(), false, true, chosenAnimal);
     }
 
+    /**
+     * @param animals    list of animals for type, which target animal belongs to
+     * @param chosenType number of type in the types sub-menu
+     * @apiNote routine for displaying commands for particular animal
+     * @see Controller#showCommands(ArrayList, int)
+     */
     private void showCommands(ArrayList<T> animals, int chosenType) {
 
         if (animals.size() == 0) {
@@ -223,6 +244,13 @@ public class Controller<T extends Animal> {
 
     }
 
+    /**
+     * @param animal   empty animal of particular type
+     * @param sizeType number of animals in this type (to adjust new index)
+     * @return new animal of input type
+     * @apiNote routine for adding new animal to particular animals type
+     * @see Controller#addAnimalRoutine(T, int)
+     */
     private T addAnimalRoutine(T animal, int sizeType) {
 
         String type = animal.getClass().getSimpleName();

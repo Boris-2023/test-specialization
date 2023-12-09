@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @param <T> type of animal, which can be included into Register
+ * @apiNote class Model to maintain the Register of animals
+ * @see Model#Model
+ */
 public class Model<T extends Animal> {
     private ArrayList<Dog> dogs = new ArrayList<Dog>();
     private ArrayList<Cat> cats = new ArrayList<Cat>();
@@ -17,6 +22,16 @@ public class Model<T extends Animal> {
 
     public Counter counter;
 
+
+    /**
+     * @param dogs     list of dogs in the Register
+     * @param cats     list of cats in the Register
+     * @param hamsters list of hamsters in the Register
+     * @param horses   list of horses in the Register
+     * @param camels   list of camels in the Register
+     * @param donkeys  list of donkeys in the Register
+     * @apiNote constructor of the Model implying the data are input manually
+     */
     public Model(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Hamster> hamsters,
                  ArrayList<Horse> horses, ArrayList<Camel> camels, ArrayList<Donkey> donkeys) {
         this.dogs = dogs;
@@ -31,6 +46,17 @@ public class Model<T extends Animal> {
     }
 
     // load animals from file
+
+    /**
+     * @param dogs     list of dogs in the Register
+     * @param cats     list of cats in the Register
+     * @param hamsters list of hamsters in the Register
+     * @param horses   list of horses in the Register
+     * @param camels   list of camels in the Register
+     * @param donkeys  list of donkeys in the Register
+     * @param fileName name of the file with initial Register (list of animals)
+     * @apiNote constructor of the Model implying the data are loaded from a file
+     */
     public Model(ArrayList<Dog> dogs, ArrayList<Cat> cats, ArrayList<Hamster> hamsters, ArrayList<Horse> horses,
                  ArrayList<Camel> camels, ArrayList<Donkey> donkeys, String fileName) {
 
@@ -46,7 +72,18 @@ public class Model<T extends Animal> {
         inputAnimalsFromFile(fileName);
     }
 
-
+    /**
+     * @param toPrint          list of the animals to print
+     * @param message          message to display before the list printed
+     * @param fields           string of data fields to output
+     * @param emptyListMessage message to print in case of empty list
+     * @param isAddType        flag if animal type must be printed
+     * @param isAddCommands    flag if animal commands must be printed
+     * @param itemToPrint      consequent listing number of animal to print, if the value exceeds the list size => print all
+     * @return true if the routine has been performed as intended
+     * @apiNote method to print animal(s) of particular type
+     * @see Model#printAnimalsByType(ArrayList, String, String, String, boolean, boolean, int)
+     */
     public boolean printAnimalsByType(ArrayList<T> toPrint, String message, String fields, String emptyListMessage, boolean isAddType, boolean isAddCommands, int itemToPrint) {
 
         if (toPrint.size() == 0) {
@@ -71,6 +108,16 @@ public class Model<T extends Animal> {
         }
     }
 
+    /**
+     * @param message       message to print before the main output
+     * @param cap           header of the list
+     * @param numberOfTypes number of types in the Register
+     * @param isAddType     flag to print animal type too
+     * @param isAddCommands flag to print commands for every animal
+     * @return true if the routine has been performed as intended
+     * @apiNote method to print all animals of the Register
+     * @see Model#printAllAnimals(String, String, Integer, boolean, boolean)
+     */
     public boolean printAllAnimals(String message, String cap, Integer numberOfTypes, boolean isAddType, boolean isAddCommands) {
         String res = "\n";
         int cnt = 0;
@@ -146,9 +193,15 @@ public class Model<T extends Animal> {
         return true;
     }
 
+
+    /**
+     * @param newAnimal animal of generic type
+     * @apiNote method to add new animal to corresponding type list
+     * @see Model#addAnimal(T)
+     */
     public void addAnimal(T newAnimal) {
 
-        if(newAnimal==null) return;
+        if (newAnimal == null) return;
 
         String tp = newAnimal.getClass().getSimpleName().toLowerCase();
         switch (tp) {
@@ -199,11 +252,22 @@ public class Model<T extends Animal> {
         return donkeys;
     }
 
-
+    /**
+     * @return total number of animals of all types in the Register
+     * @apiNote method to count all animals in the Register
+     * @see Model#countAllAnimals()
+     */
     public Integer countAllAnimals() {
         return dogs.size() + cats.size() + hamsters.size() + horses.size() + camels.size() + donkeys.size();
     }
 
+    /**
+     * @param str string to check
+     * @return boolean if the date format is correct
+     * @apiNote method to check if input string complies with required date YYYY-MM-DD format
+     * (including value ranges for year, month and date)
+     * @see Model#isStandardDateFormat(String)
+     */
     public boolean isStandardDateFormat(String str) {
 
         if (str.length() != 10) return false;
@@ -216,11 +280,19 @@ public class Model<T extends Animal> {
         int day = parseIntegerFromString(str.substring(8, 10), 0);
         if (day < 1 || day > 31) return false;
 
-        if(str.charAt(4)!='-' || str.charAt(7)!='-') return false;
+        if (str.charAt(4) != '-' || str.charAt(7) != '-') return false;
 
         return true;
     }
 
+    /**
+     * @param newCommand the command to add
+     * @param className  name of the animal's type (class)
+     * @param index      index for the animal in its type list (normally, next to the size of the list)
+     * @return true if the routine has been performed as intended
+     * @apiNote routine to update commands for particular animal
+     * @see Model#updateCommands(String, String, int)
+     */
     public boolean updateCommands(String newCommand, String className, int index) {
 
         String tp = className.toLowerCase();
@@ -305,6 +377,12 @@ public class Model<T extends Animal> {
         return false;
     }
 
+
+    /**
+     * @param fileName name of the file to load
+     * @apiNote method to load initial animals data from file and allocate it into corresponding types lists
+     * @see Model#inputAnimalsFromFile(String)
+     */
     public void inputAnimalsFromFile(String fileName) {
 
         boolean isNewAnimal;

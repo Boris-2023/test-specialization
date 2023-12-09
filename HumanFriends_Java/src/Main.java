@@ -1,6 +1,6 @@
-import Controller.Controller;
-import View.ViewRus;
+import Controller.*;
 import Model.*;
+import View.ViewRus;
 
 import java.util.ArrayList;
 

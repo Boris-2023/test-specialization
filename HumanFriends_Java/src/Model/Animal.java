@@ -7,12 +7,20 @@ public abstract class Animal {
     protected String dateBirth;
     protected String commands;
 
+    /**
+     * @param name      name of the animal
+     * @param type      type of the animal
+     * @param dateBirth birthdate of the animal
+     * @param commands  commands, which the animal can execute
+     * @apiNote full constructor for abstract basic class
+     */
     public Animal(String name, String type, String dateBirth, String commands) {
         this.name = name;
         this.type = type;
         this.dateBirth = dateBirth;
         this.commands = commands;
     }
+
     public Animal() {
     }
 
@@ -65,6 +73,13 @@ public abstract class Animal {
         return "Animal [name = " + name + ", Type = " + type + ", Date of birth = " + dateBirth + ", Commands = " + commands + "]";
     }
 
+    /**
+     * animal data string formation with options to include Type and Commands by flags
+     * @param isAddType if adding type of the animal
+     * @param isAddCommands if adding commands for the animal
+     * @return string ready to be printed
+     * @see Animal#toStringSelect(boolean, boolean) 
+     */
     public String toStringSelect(boolean isAddType, boolean isAddCommands) {
         String res = "";
         res += name + "\t\t";

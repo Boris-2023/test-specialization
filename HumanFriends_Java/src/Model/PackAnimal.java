@@ -2,7 +2,10 @@ package Model;
 
 import java.util.Date;
 
-public class PackAnimal extends Animal {
+/**
+ * Class PackAnimal extending Animal
+ */
+public abstract class PackAnimal extends Animal {
 
     private Integer maxLoad;
 
@@ -21,6 +24,11 @@ public class PackAnimal extends Animal {
 
     }
 
+    /**
+     * PackAnimal data converting into string (including Type and Commands)
+     * @return string ready to be printed
+     * @see PackAnimal#toStringWithType()
+     */
     @Override
     public String toStringWithType() {
         String res = "";

@@ -2,7 +2,10 @@ package Model;
 
 import java.util.Date;
 
-public class Pet extends Animal {
+/**
+ * Class Pet extending Animal
+ */
+public abstract class Pet extends Animal {
 
     private Integer needWalkPerDayNum;
 
@@ -20,6 +23,11 @@ public class Pet extends Animal {
 
     }
 
+    /**
+     * Pet data converting into string (including Type and Commands)
+     * @return string ready to be printed
+     * @see Pet#toStringWithType()
+     */
     @Override
     public String toStringWithType() {
         String res = "";
